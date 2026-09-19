@@ -7,14 +7,26 @@
 <title>IMRaD Four Articles | New independent activity</title>
 <style>
 :root{font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#1d1d1d;background:#fff}*{box-sizing:border-box}body{margin:0}main{max-width:1060px;margin:25px auto 65px;padding:0 18px}h1{font-size:1.65rem;margin:0}h2{font-size:1.25rem;margin:12px 0}h3{font-size:1.03rem;margin:20px 0 7px}p{margin:7px 0 12px}.small{font-size:.89rem;color:#515151}.top{padding-bottom:14px;border-bottom:1px solid #bdbdbd}.tag{display:inline-block;border:1px solid #777;padding:3px 8px;border-radius:3px;font-size:.82rem}.warning{border:1px solid #777;background:#f7f7f7;padding:12px;margin:16px 0}.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:18px 0}.slot{border:1px solid #999;border-radius:3px;padding:12px;min-height:118px}.slot h2{font-size:1.04rem;margin:0 0 5px}.slot p{font-size:.87rem;margin:5px 0}.slot button{margin-top:7px;width:100%}.slot.mine{border:2px solid #222;padding:11px}.slot.active{background:#f6f6f6}.shell{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(245px,1fr);gap:26px;align-items:start}.workspace{min-width:0}.peer{position:sticky;top:12px;border-left:1px solid #bbb;padding-left:19px;max-height:calc(100vh - 25px);overflow:auto}.peer h2{font-size:1.1rem}.peer-entry{border-top:1px solid #ddd;padding:10px 0}.peer-entry h3{margin:2px 0 6px}.peer-answer{white-space:pre-wrap;overflow-wrap:anywhere;margin:4px 0 11px}.muted{color:#666}.tabs{display:flex;flex-wrap:wrap;gap:5px;margin:16px 0;border-bottom:1px solid #bbb;padding-bottom:10px}button{font:inherit;border:1px solid #777;color:#111;background:#fff;padding:8px 11px;border-radius:3px;cursor:pointer}button:hover{background:#f0f0f0}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #222;outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}button.primary,button.selected{background:#242424;color:#fff}.flow{list-style:none;padding:0;margin:14px 0}.card{display:flex;align-items:center;gap:8px;border:1px solid #aaa;padding:9px 8px;margin:7px 0;min-height:59px;background:#fff;border-radius:3px}.card.dragging{opacity:.45}.handle{cursor:grab;touch-action:none;font-weight:700;font-size:1.2rem}.letter{font-weight:bold;min-width:20px}.card-text{flex:1;font-size:.93rem}.arrows{display:flex;flex-direction:column;gap:4px}.arrows button{padding:3px 9px;font-size:.85rem}.moves{font-size:.91rem;color:#444}.patterns{display:grid;gap:6px;margin:12px 0}.pattern{display:flex;gap:9px;align-items:flex-start;border:1px solid #aaa;padding:10px;cursor:pointer}.pattern:has(input:checked){border:2px solid #222;padding:9px}.pattern input{margin-top:6px;accent-color:#222}.question{display:block;font-weight:bold;margin:14px 0 3px}textarea{width:100%;resize:vertical;min-height:85px;border:1px solid #888;border-radius:3px;padding:10px;font:inherit}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:13px 0}.feedback,.model{border:1px solid #ccc;background:#f9f9f9;padding:10px;margin:11px 0}.model[hidden],.feedback[hidden],[hidden]{display:none!important}.model p{white-space:pre-wrap}.section-foot{border-top:1px solid #bbb;margin-top:20px;padding-top:13px;display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap}.footer{border-top:1px solid #bbb;padding-top:15px;margin-top:27px}.status{font-size:.9rem;min-height:1.4em}.ghost{position:fixed;background:white;border:2px solid #333;padding:10px;pointer-events:none;z-index:99;opacity:.92;box-shadow:0 3px 13px #0002;max-width:70vw}.readbox{border:1px solid #ccc;padding:13px;margin:9px 0;white-space:pre-wrap;overflow-wrap:anywhere}.review-flow{padding-left:24px;margin:8px 0 12px}.review-flow li{padding:4px 0;overflow-wrap:anywhere}.review-flow li+li{border-top:1px solid #eee}.review-flow strong{margin-right:5px}.citation{margin:27px 0;font-size:.81rem;color:#555}.section-label{margin-left:auto;font-size:.84rem;color:#555}a{color:#222} @media(max-width:780px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{grid-template-columns:1fr}.peer{position:static;max-height:none;border-left:0;border-top:1px solid #bbb;padding:17px 0}}@media(max-width:480px){main{padding:0 11px}.board{gap:6px}.slot{padding:8px}.slot p{font-size:.79rem}.card{gap:5px;padding:8px 5px}.arrows button{padding:4px 6px}.card-text{font-size:.88rem}}
+.answer-library{margin:22px 0;padding:15px;border:2px solid #333;background:#fff}.answer-library h3{margin:0 0 7px}.answer-library h4{margin:15px 0 6px}.model-section{padding:13px 0;border-top:1px solid #bbb}.model-section:first-child{border-top:0}.model-pair{border:1px solid #ddd;padding:9px 12px;margin:9px 0;background:#fafafa}.model-pair p{margin:5px 0}.model-flow{padding-left:25px}.model-flow li{margin:6px 0}.answer-other{margin:14px 0;border-top:1px solid #bbb;padding-top:13px}.answer-other summary{cursor:pointer;font-weight:bold;padding:6px 0}.answer-other details{border-top:1px solid #ddd;padding:9px 0}.answer-other details summary{font-weight:normal}.chosen-pattern{font-weight:bold}.answer-library:focus{outline:2px solid #222;outline-offset:3px}
+
+.sentence-bank{margin:22px 0 14px;border:1px solid #777;padding:12px;background:#fff}
+.sentence-bank>summary{cursor:pointer;font-weight:bold;font-size:1.04rem}
+.sentence-bank .bank-intro{margin:9px 0;font-size:.9rem}
+.sentence-bank details{margin:11px 0 9px;border-top:1px solid #bbb;padding:7px 0}
+.sentence-bank details summary{cursor:pointer;font-weight:bold}
+.bank-article{padding:7px 0 5px;border-top:1px solid #e1e1e1}
+.bank-article h5{font-size:.92rem;margin:6px 0 4px}
+.bank-list{padding-left:25px;margin:7px 0 11px}
+.bank-list li{margin:8px 0;line-height:1.45}
+.bank-move{font-weight:bold;color:#333}
 </style>
 </head>
 <body>
 <main>
 <header class="top"><h1>IMRaD writing lab: Four research articles</h1><p class="small">Independent analysis · One research article per workspace · Peer comparison after submission</p><p id="mode" class="tag" role="status">Loading…</p></header>
 <div id="banner" class="warning" hidden></div>
-<p><strong>Select your assigned workspace.</strong> Each workspace contains a different research article. For each IMRaD section, arrange the content cards, explain the rhetorical sequence, and construct one evidence-based sentence. Complete and submit all four sections before viewing classmates’ responses. Edit only your assigned workspace.</p>
-<p class="small">Article assignments repeat for Students 5–8. The content cards and model sentences are original teaching paraphrases, not quotations from the articles. Each workspace includes a PDF link. Interpret associations in accordance with the study design.</p>
+<p><strong>Select your assigned workspace.</strong> Each workspace contains a different research article. For each IMRaD section, arrange the content cards, explain the rhetorical sequence, and construct one evidence-based sentence. Complete and submit all four sections before viewing the complete answer key and classmates’ submitted responses. Edit only your assigned workspace.</p>
+<p class="small">After submitting, your full answer key opens automatically with model sentences for all three alternative structures. An additional expandable bank provides 20 complete examples for each IMRaD section, drawn from all four articles (80 total). You can also expand the other article keys.</p><p class="small">Article assignments repeat for Students 5–8. The content cards and model sentences are original teaching paraphrases, not quotations from the articles. Each workspace includes a PDF link. Interpret associations in accordance with the study design.</p>
 <div id="name-box" class="warning"><label for="student-name"><strong>Your name</strong> (required before claiming a workspace)</label><br><input id="student-name" type="text" autocomplete="name" maxlength="80" placeholder="Enter your name" aria-describedby="name-help" style="font:inherit;border:1px solid #888;border-radius:3px;padding:8px;max-width:420px;width:100%;margin-top:6px"><p id="name-help" class="small">Your name will appear in the instructor dashboard and class response exports. Names are entered by students and are not verified.</p></div>
 <div id="board" class="board" aria-label="Student workspaces"></div>
 <div class="actions"><button id="more-seats" type="button">+ Add one student workspace</button><span id="seat-count" class="small" aria-live="polite">Showing 4 workspaces</span></div>
@@ -846,6 +858,368 @@ const articleSets=[
     ]
   }
 ];
+const sentenceExampleBank={
+  "Introduction": [
+    [
+      [
+        "Research problem",
+        "Sleep difficulties are common among university students and have implications for health and academic functioning."
+      ],
+      [
+        "Existing evidence",
+        "Previous studies have reported associations between greater screen use and shorter or poorer sleep."
+      ],
+      [
+        "Population gap",
+        "Although the screen–sleep relationship has been investigated, much of the earlier work has focused on children and adolescents rather than university students."
+      ],
+      [
+        "Outcome gap",
+        "Earlier research has emphasized sleep duration, leaving other indicators of sleep quality less thoroughly examined."
+      ],
+      [
+        "Study aim",
+        "The study aimed to examine how total and evening screen time were associated with multiple sleep outcomes among university students."
+      ]
+    ],
+    [
+      [
+        "Research context",
+        "Breakfast habits are relevant to the health and daily functioning of undergraduate students."
+      ],
+      [
+        "Existing evidence",
+        "Previous studies have linked breakfast skipping with health concerns and academic outcomes."
+      ],
+      [
+        "Contextual gap",
+        "Although breakfast skipping had been studied previously, further evidence was needed on undergraduate students during the COVID-19 period."
+      ],
+      [
+        "Specific gap",
+        "The frequency and reported reasons for breakfast skipping, together with its academic correlates during the pandemic, warranted further investigation."
+      ],
+      [
+        "Study aim",
+        "This study examined breakfast skipping, associated factors, reported health consequences, and academic performance among undergraduates during COVID-19."
+      ]
+    ],
+    [
+      [
+        "Research context",
+        "Campus green spaces may provide opportunities for students to experience emotionally restorative environments."
+      ],
+      [
+        "Existing evidence",
+        "Earlier research had associated exposure to green spaces and preferred natural settings with psychological and emotional benefits."
+      ],
+      [
+        "Specific gap",
+        "The relationship between perceived naturalness and students’ positive emotions remained uncertain across different university contexts."
+      ],
+      [
+        "Contextual gap",
+        "Although emotional benefits of green spaces had been investigated, the relevance of these associations across two university settings during COVID-19 required further examination."
+      ],
+      [
+        "Study aim",
+        "The study examined perceived naturalness and positive emotions in two university settings, considering place attachment and landscape preference."
+      ]
+    ],
+    [
+      [
+        "Research problem",
+        "Academic stress is a recurring concern for college students navigating university life."
+      ],
+      [
+        "Existing evidence",
+        "Previous research has associated academic stress with mental-health outcomes and reported differences across student subgroups."
+      ],
+      [
+        "Outcome gap",
+        "Although academic stress and psychological difficulties have received attention, positive mental well-being merits separate examination."
+      ],
+      [
+        "Population gap",
+        "The relationship between academic stress and positive well-being across different student groups warranted further study."
+      ],
+      [
+        "Study aim",
+        "The researchers examined the relationship between academic stress and mental well-being and compared outcomes across student groups."
+      ]
+    ]
+  ],
+  "Methods": [
+    [
+      [
+        "Design",
+        "The investigators conducted a cross-sectional survey of Norwegian college and university students in 2018."
+      ],
+      [
+        "Setting",
+        "Data were obtained from a national survey of students enrolled in higher education in Norway."
+      ],
+      [
+        "Sample",
+        "After exclusions, 49,051 student questionnaires were included in the analysis."
+      ],
+      [
+        "Measurement",
+        "Screen use and sleep timing were obtained from participants’ self-reported responses."
+      ],
+      [
+        "Analysis",
+        "Regression methods were used to examine associations with continuous sleep outcomes and insomnia."
+      ]
+    ],
+    [
+      [
+        "Design and period",
+        "A cross-sectional online survey of undergraduate students was conducted in Kurdistan in early 2020."
+      ],
+      [
+        "Instrument",
+        "Breakfast habits were assessed using the self-report Breakfast Eating Habit Survey."
+      ],
+      [
+        "Covariates or descriptors",
+        "The questionnaire collected demographic characteristics alongside information on breakfast habits."
+      ],
+      [
+        "Outcome measurement",
+        "Information on academic performance was obtained through student self-report rather than an objective cognitive test."
+      ],
+      [
+        "Statistical analysis",
+        "Chi-square tests and logistic regression were used to examine associations among the survey variables."
+      ]
+    ],
+    [
+      [
+        "Design and setting",
+        "Questionnaire surveys were administered at two Chinese university campuses during the COVID-19 period."
+      ],
+      [
+        "Sample",
+        "The study obtained 474 usable questionnaires across the two university settings."
+      ],
+      [
+        "Exposure measurement",
+        "Perceived naturalness was assessed using items in the student questionnaire."
+      ],
+      [
+        "Additional constructs",
+        "The questionnaire also measured positive emotions, place attachment, and landscape preference."
+      ],
+      [
+        "Analysis",
+        "Structural equation models were estimated to examine relationships among the measured constructs in the two university contexts."
+      ]
+    ],
+    [
+      [
+        "Sampling",
+        "An online survey recruited a convenience sample of college students residing in the United States."
+      ],
+      [
+        "Sample",
+        "Responses from 843 college students were included in the study."
+      ],
+      [
+        "Stress measure",
+        "Perceived academic stress was measured using the Perception of Academic Stress Scale."
+      ],
+      [
+        "Well-being measure",
+        "Mental well-being was assessed with the Short Warwick–Edinburgh Mental Well-Being Scale."
+      ],
+      [
+        "Analysis",
+        "The researchers used correlation and group comparisons, including multivariate analysis of variance, to analyze the scale scores."
+      ]
+    ]
+  ],
+  "Results": [
+    [
+      [
+        "Analyzed sample",
+        "The analyzed sample comprised 49,051 student questionnaires."
+      ],
+      [
+        "Sample description",
+        "The median age of the analyzed students was 22 years."
+      ],
+      [
+        "Descriptive finding",
+        "Checking social media was the most frequently reported in-bed screen activity."
+      ],
+      [
+        "Main comparison",
+        "Mean sleep duration was 7 h 40 min in the lowest evening screen-time fifth and 7 h 3 min in the highest fifth."
+      ],
+      [
+        "Additional comparison",
+        "The proportion meeting insomnia criteria was 25% in the lowest evening screen-time fifth and 36% in the highest fifth."
+      ]
+    ],
+    [
+      [
+        "Sample description",
+        "Women accounted for 55.7% of the respondents described in the study tables."
+      ],
+      [
+        "Descriptive finding",
+        "Time constraints were identified as a commonly reported reason for skipping breakfast."
+      ],
+      [
+        "Adjusted comparison",
+        "Compared with the low-income reference group, the medium-income group had higher adjusted odds of breakfast skipping (OR = 1.85; 95% CI 1.08–3.17)."
+      ],
+      [
+        "Additional comparison",
+        "The adjusted odds ratio for breakfast skipping in the high-income group, relative to the low-income group, was 1.98."
+      ],
+      [
+        "Combined finding",
+        "Relative to the low-income group, the medium- and high-income groups had adjusted odds ratios of 1.85 and 1.98 for breakfast skipping, respectively."
+      ]
+    ],
+    [
+      [
+        "Sample",
+        "A total of 474 usable questionnaires were obtained from the two university campuses."
+      ],
+      [
+        "Sample comparison",
+        "The respondent characteristics differed between campuses, including the proportion of women."
+      ],
+      [
+        "Main finding",
+        "Perceived naturalness showed a positive modeled association with positive emotions at both universities."
+      ],
+      [
+        "Model coefficients",
+        "The estimated direct-path coefficients between perceived naturalness and positive emotions were 0.215 at university A and 0.247 at university B."
+      ],
+      [
+        "Further result",
+        "The modeled relationships involving landscape preference and place attachment differed across the two universities."
+      ]
+    ],
+    [
+      [
+        "Sample",
+        "The study included 843 college students."
+      ],
+      [
+        "Sample characteristic",
+        "Women accounted for 78.5% of the survey respondents."
+      ],
+      [
+        "Correlation",
+        "Scores on the Perception of Academic Stress Scale and the Short Warwick–Edinburgh Mental Well-Being Scale were correlated (r = 0.53, p < 0.001)."
+      ],
+      [
+        "Alternative numerical form",
+        "The reported correlation between PAS and SWEMWBS scores was 0.53 (p < 0.001)."
+      ],
+      [
+        "Further result",
+        "The researchers also reported differences in stress and well-being measures across some student groups."
+      ]
+    ]
+  ],
+  "Discussion": [
+    [
+      [
+        "Main finding",
+        "Screen use was associated with sleep outcomes, with more consistent associations reported for in-bed use."
+      ],
+      [
+        "Qualified interpretation",
+        "These findings suggest that evening screen use may warrant particular attention when studying sleep among university students."
+      ],
+      [
+        "Alternative explanation",
+        "The direction of the relationship remains uncertain because students with sleep difficulties may also use screens while awake."
+      ],
+      [
+        "Design limitation",
+        "Because screen use and sleep were measured at one time point, the survey cannot establish which preceded the other."
+      ],
+      [
+        "Measurement limitation",
+        "Self-reported screen use and sleep may be affected by reporting error, which should be considered when interpreting the associations."
+      ]
+    ],
+    [
+      [
+        "Main finding",
+        "Breakfast skipping varied across student characteristics, including household income and residence."
+      ],
+      [
+        "Contextual interpretation",
+        "Reported time constraints may be relevant to understanding why some undergraduates skipped breakfast during the pandemic."
+      ],
+      [
+        "Qualified implication",
+        "The reported barriers may help universities identify questions to investigate when considering student breakfast habits."
+      ],
+      [
+        "Design limitation",
+        "Because the survey was cross-sectional, it cannot establish that skipping breakfast caused changes in academic performance."
+      ],
+      [
+        "Measurement limitation",
+        "The reliance on self-reported breakfast habits and academic performance should be considered when interpreting the observed associations."
+      ]
+    ],
+    [
+      [
+        "Main finding",
+        "Perceived naturalness was positively associated with positive emotions in the models for both university samples."
+      ],
+      [
+        "Contextual interpretation",
+        "Differences in modeled pathways between campuses suggest that the relationships may depend on university context."
+      ],
+      [
+        "Qualified implication",
+        "The associations may inform questions for future campus-design research, but the study did not evaluate a redesign."
+      ],
+      [
+        "Design limitation",
+        "Questionnaire-based structural equation models cannot establish that increasing perceived naturalness would improve students’ emotions."
+      ],
+      [
+        "Future research",
+        "An intervention study could test whether changes to campus green spaces precede changes in students’ reported emotions."
+      ]
+    ],
+    [
+      [
+        "Main finding",
+        "The study reported a relationship between perceived academic stress and mental well-being among the surveyed students."
+      ],
+      [
+        "Interpretive caution",
+        "The association between the two scales should be interpreted in light of how their scores were coded."
+      ],
+      [
+        "Qualified implication",
+        "The findings may inform questions for further research on student support without establishing the effects of any particular service."
+      ],
+      [
+        "Causal limitation",
+        "The correlational design cannot establish that academic stress caused the observed well-being outcomes."
+      ],
+      [
+        "Sampling limitation",
+        "Because students were recruited by convenience sampling, the findings should not be assumed to represent all college students."
+      ]
+    ]
+  ]
+};
 let units=articleSets[0].units;
 const articleFor=i=>articleSets[i%articleSets.length];
 const setArticle=i=>{units=articleFor(i).units};
@@ -893,8 +1267,8 @@ async function startOnline(config){
        slots[i]={ownerUid:meta.ownerUid,status:meta.status,restricted:true,sections:[]};
        detailUnsub[i]=dbMod.onSnapshot(docRef(i),detail=>{
          slots[i]=detail.exists()?detail.data():null;
-         if(slots[i]?.ownerUid===uid&&active<0){active=i;setArticle(i);working=normalize(slots[i].sections);submitted=slots[i].status==='submitted';renderEditor()}
-         if(i===active&&slots[i]?.status==='submitted'&&!submitted){submitted=true;clearTimeout(saveTimer);renderEditor()}
+         if(slots[i]?.ownerUid===uid&&active<0){active=i;setArticle(i);working=normalize(slots[i].sections);submitted=slots[i].status==='submitted';review=submitted;renderEditor()}
+         if(i===active&&slots[i]?.status==='submitted'&&!submitted){submitted=true;review=true;clearTimeout(saveTimer);renderEditor()}
          renderOverview();renderPeers();
        },showError);
      }
@@ -918,7 +1292,7 @@ function renderOverview(){
 }
 async function choose(i){
  const entering=!slots[i];const enteredName=entering?requireName():null;if(entering&&!enteredName)return;
- if(demo){if(!slots[i])slots[i]={ownerUid:'demo-'+SLOT_IDS[i],sections:freshNamed(enteredName),status:'draft',claimedAt:new Date().toISOString(),submittedAt:null};active=i;setArticle(i);working=normalize(slots[i].sections);submitted=slots[i].status==='submitted';review=false;current=0;savePreview();renderOverview();renderEditor();renderPeers();return}
+ if(demo){if(!slots[i])slots[i]={ownerUid:'demo-'+SLOT_IDS[i],sections:freshNamed(enteredName),status:'draft',claimedAt:new Date().toISOString(),submittedAt:null};active=i;setArticle(i);working=normalize(slots[i].sections);submitted=slots[i].status==='submitted';review=submitted;current=0;savePreview();renderOverview();renderEditor();renderPeers();return}
  if(!uid){setStatus('Wait for the connection to finish.');return}
  const d=slots[i];if(d&&d.ownerUid!==uid){if(!submitted||d.status!=='submitted'){setStatus('You can view a classmate’s answers only after both workspaces are submitted.');return}renderReadOnly(i);renderOverview();return}
  if(slots.some((v,j)=>j!==i&&v?.ownerUid===uid)){setStatus('You already claimed another student workspace. Open your own space above.');return}
@@ -931,7 +1305,7 @@ async function choose(i){
    const data={ownerUid:uid,sections:freshNamed(enteredName),status:'draft',claimedAt:fire.serverTimestamp(),updatedAt:fire.serverTimestamp(),submittedAt:null};
     tx.set(ref,data);tx.set(metaRef,{ownerUid:uid,status:'draft',claimedAt:fire.serverTimestamp(),submittedAt:null});return {...data,sections:freshNamed(enteredName)};
   });
-  active=i;current=0;working=normalize(result.sections);submitted=result.status==='submitted';review=false;renderOverview();renderEditor();renderPeers();setStatus('Workspace ready. Your work saves automatically.');
+  active=i;current=0;working=normalize(result.sections);submitted=result.status==='submitted';review=submitted;renderOverview();renderEditor();renderPeers();setStatus('Workspace ready. Your work saves automatically.');
  }catch(e){showError(e);renderOverview()}
 }
 function renderReadOnly(i){let d=slots[i],a=articleFor(i);$('workspace').innerHTML=`<h2>Student ${i+1} · View only</h2><p><strong>Article ${String.fromCharCode(65+i%4)}:</strong> ${esc(a.short)} · <a href="${esc(a.pdf)}" target="_blank" rel="noopener noreferrer">Download article PDF</a></p><p class="small">You cannot edit this workspace. Use your own workspace to complete the activity.</p>${d?readSections(d,a.units):'<p>No work yet.</p>'}`;renderPeers();}
@@ -951,14 +1325,36 @@ function renderPeers(){
  const other=SLOT_IDS.slice(0,visibleSeats).map((s,i)=>({i,d:slots[i]})).filter(({i,d})=>i!==active&&d&&d.status==='submitted'&&Array.isArray(d.sections)&&d.sections.length===4);
  $('peers').innerHTML=other.length?other.map(({i,d})=>{const a=articleFor(i),u=a.units[peerSection],s=d.sections?.[peerSection]||{};return `<div class="peer-entry"><h3>Student ${i+1} · Article ${String.fromCharCode(65+i%4)}</h3><p class="small">${esc(a.short)} · <a href="${esc(a.pdf)}" target="_blank" rel="noopener noreferrer">Download article PDF</a> · ${d.status==='submitted'?'Submitted':'Draft'}</p><p class="small"><strong>Their ${esc(u.title)} card order:</strong></p>${reviewFlow(u,s.order)}<p class="small">Their explanation:</p><p class="peer-answer">${esc(s.why||'Not yet answered')}</p><p class="small">Their chosen sentence structure:</p><p class="peer-answer">${esc(selectedPattern(u,s))}</p><p class="small">Their sentence:</p><p class="peer-answer">${esc(s.sentence||'Not yet written')}</p></div>`}).join(''):'<p class="small">Other students’ answers will appear here after they claim their workspaces.</p>';
 }
+function modelKeyForArticle(articleIndex,showChosen){
+ const article=articleSets[articleIndex];
+ return `<div class="model-article"><h4>Article ${String.fromCharCode(65+articleIndex)}: ${esc(article.short)}</h4><p class="small">${esc(article.citation)} · <a href="${esc(article.pdf)}" target="_blank" rel="noopener noreferrer">Article PDF</a></p>${article.units.map((u,j)=>{
+  const studentSection=showChosen?working?.[j]:null;
+  const fullFlow=u.order.map((id,k)=>{
+   const card=u.cards.find(x=>x.id===id);
+   return `<li><strong>${esc(u.moves[k]||'Move '+(k+1))} · ${esc(id)}.</strong> ${esc(card?.text||'Card unavailable')}</li>`;
+  }).join('');
+  const allStructures=u.patterns.map((pattern,k)=>`<div class="model-pair"><p><strong>Structure ${k+1}${studentSection?.pattern===String(k+1)?' (your choice)':''}:</strong> ${esc(pattern)}</p><p><strong>Matching model sentence:</strong> ${esc(u.modelSentences[k]||'No model sentence supplied for this structure.')}</p></div>`).join('');
+  return `<section class="model-section"><h4>${j+1}. ${esc(u.title)}</h4><p><strong>Correct order:</strong> ${esc(u.order.join(' → '))}</p><p><strong>Complete section flow:</strong></p><ol class="model-flow">${fullFlow}</ol><p><strong>Why this sequence:</strong> ${esc(u.rationale)}</p><p><strong>Writing task:</strong> ${esc(u.sentencePrompt)}</p><p><strong>All sentence structures and model answers:</strong></p>${allStructures}<p class="small"><strong>Writing check:</strong> ${esc(u.sentenceCheck)} Other evidence-consistent sentences may also be acceptable.</p></section>`;
+ }).join('')}</div>`;
+}
+function fullSentenceBank(){
+ const articleNames=articleSets.map(a=>a.short);
+ const sectionList=['Introduction','Methods','Results','Discussion'];
+ return `<details class="sentence-bank" id="sentence-bank"><summary>Additional sentence examples: 80 in total (20 for each IMRaD section)</summary><p class="bank-intro">These 80 complete sentences are original teaching paraphrases: five examples from each of four research articles for every IMRaD section. They illustrate different rhetorical moves, not 80 alternative answers to a single question. They are not quotations from the papers. Consult each linked PDF before reusing any factual claim in your own writing; preserve the original study design, statistics and citations. The four section groups can be opened separately.</p>${sectionList.map((section)=>`<details><summary>${esc(section)} · 20 sentence examples</summary>${sentenceExampleBank[section].map((examples,i)=>`<div class="bank-article"><h5>Article ${String.fromCharCode(65+i)}: ${esc(articleNames[i])} · <a href="${esc(articleSets[i].pdf)}" target="_blank" rel="noopener noreferrer">Source PDF</a></h5><ol class="bank-list">${examples.map(([move,sentence])=>`<li><span class="bank-move">${esc(move)}:</span> ${esc(sentence)}</li>`).join('')}</ol></div>`).join('')}</details>`).join('')}</details>`;
+}
+function fullAnswerKey(){
+ if(!submitted||!review||active<0)return '';
+ const ownArticle=active%articleSets.length;
+ return `<section class="answer-library" id="answer-key" tabindex="-1"><h3>Complete answer key</h3><p>These answers cover <strong>all four IMRaD sections</strong> of your article. Every alternative sentence structure has its own matching model sentence. An optional bank below provides 20 additional examples per IMRaD section. Compare rhetorical choices rather than copying models into a submitted response.</p>${modelKeyForArticle(ownArticle,true)}${fullSentenceBank()}<div class="answer-other"><details><summary>Optional: view complete answer keys for the other three articles</summary><p class="small">Each article has its own content, correct card sequence, explanation, and sentence models. These examples are original teaching paraphrases, not quotations from the studies.</p>${articleSets.map((a,i)=>i===ownArticle?'':`<details><summary>Article ${String.fromCharCode(65+i)}: ${esc(a.short)}</summary>${modelKeyForArticle(i,false)}</details>`).join('')}</details></div></section>`;
+}
 function renderEditor(){
- if(active<0||!working)return;peerSection=current;$('workspace').innerHTML=`<h2>Student ${active+1} · ${submitted?'Submitted':'My workspace'}</h2><p class="small"><strong>Name:</strong> ${esc(savedName({sections:working})||'Not recorded yet')}</p><p><strong>Article ${String.fromCharCode(65+active%4)}: ${esc(articleFor(active).short)}</strong><br><span class="small">${esc(articleFor(active).citation)} · <a href="${esc(articleFor(active).pdf)}" target="_blank" rel="noopener noreferrer">Download article PDF</a> · <a href="${esc(articleFor(active).url)}" target="_blank" rel="noopener noreferrer">Publisher webpage</a></span></p><p id="save-status" class="small">${submitted?'Submitted '+stamp(slots[active]?.submittedAt):'Your answers save as you work.'}</p><div class="tabs" id="tabs">${units.map((u,i)=>`<button type="button" data-unit="${i}" class="${i===current?'selected':''}">${i+1}. ${esc(u.title)}${countDone([working[i]])?' ✓':''}</button>`).join('')}</div><div id="unit-content"></div><div class="footer"><p><strong>Progress:</strong> <span id="progress">${countDone(working)}/4 sections completed</span></p><div class="actions"><button id="review" type="button" ${!submitted?'disabled':''}>${review?'Hide model answers':'Review model answers'}</button><button id="submit" type="button" class="primary" ${submitted?'disabled':''}>${submitted?'Submitted':'Submit all four sections'}</button></div><p class="small">Submitting saves a final record and locks this workspace. Submit your own four sections to unlock classmates’ answers and model answers. Submission locks your work.</p></div>`;
+ if(active<0||!working)return;peerSection=current;$('workspace').innerHTML=`<h2>Student ${active+1} · ${submitted?'Submitted':'My workspace'}</h2><p class="small"><strong>Name:</strong> ${esc(savedName({sections:working})||'Not recorded yet')}</p><p><strong>Article ${String.fromCharCode(65+active%4)}: ${esc(articleFor(active).short)}</strong><br><span class="small">${esc(articleFor(active).citation)} · <a href="${esc(articleFor(active).pdf)}" target="_blank" rel="noopener noreferrer">Download article PDF</a> · <a href="${esc(articleFor(active).url)}" target="_blank" rel="noopener noreferrer">Publisher webpage</a></span></p><p id="save-status" class="small">${submitted?'Submitted '+stamp(slots[active]?.submittedAt):'Your answers save as you work.'}</p><div class="tabs" id="tabs">${units.map((u,i)=>`<button type="button" data-unit="${i}" class="${i===current?'selected':''}">${i+1}. ${esc(u.title)}${countDone([working[i]])?' ✓':''}</button>`).join('')}</div><div id="unit-content"></div>${fullAnswerKey()}<div class="footer"><p><strong>Progress:</strong> <span id="progress">${countDone(working)}/4 sections completed</span></p><div class="actions"><button id="review" type="button" ${!submitted?'disabled':''}>${review?'Hide complete answer key':'Show complete answer key'}</button><button id="submit" type="button" class="primary" ${submitted?'disabled':''}>${submitted?'Submitted':'Submit all four sections'}</button></div><p class="small">Submitting saves a final record and locks this workspace. After submission, the complete key shows the correct card order, explanations, and all three sentence structures with matching models for each section. An optional bank offers 20 additional sentences for each IMRaD section (80 total across the four articles). You can also compare the other article keys and classmates’ submitted answers. Submission locks your work.</p></div>`;
  $('tabs').querySelectorAll('[data-unit]').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.unit);renderEditor();renderPeers()}));
  $('review').addEventListener('click',()=>{review=!review;renderEditor()});$('submit').addEventListener('click',submitAll);renderUnit();renderOverview();renderPeers();
 }
 function renderUnit(){
  const u=units[current],s=working[current],locked=submitted;
- $('unit-content').innerHTML=`<h3>${current+1}. ${esc(u.title)}</h3><p>Drag the cards into reading order, or use the arrow buttons.</p><p class="moves">Section flow: ${u.moves.map(esc).join(' → ')}</p><ol id="flow" class="flow"></ol><div class="actions"><button id="check-order" ${locked?'disabled':''}>Check my order</button><span id="order-feedback" class="small" aria-live="polite">${s.checked?'Order checked. Explain your choice below.':''}</span></div><label class="question" for="why">${esc(u.question)}</label><textarea id="why" ${locked?'disabled':''} placeholder="Write your own explanation.">${esc(s.why)}</textarea><h3>Construct a sentence</h3><p>Select one structure and write a sentence grounded in your assigned article.</p><div id="patterns" class="patterns">${u.patterns.map((p,i)=>`<label class="pattern"><input type="radio" name="pattern" value="${i+1}" ${s.pattern===String(i+1)?'checked':''} ${locked?'disabled':''}><span>${i+1}. ${esc(p)}</span></label>`).join('')}</div>${u.data?`<p><strong>${esc(u.data)}</strong></p>`:''}<label class="question" for="sentence">${esc(u.sentencePrompt)}</label><textarea id="sentence" ${locked?'disabled':''} placeholder="Write your sentence.">${esc(s.sentence)}</textarea><p class="small"><strong>Self-check:</strong> ${esc(u.sentenceCheck)}</p>${submitted&&review?`<div class="model"><strong>Suggested flow: ${u.order.join(' → ')}</strong><p>${esc(u.rationale)}</p><p><strong>Model sentence for your selected structure:</strong></p><p>${esc(s.pattern?u.modelSentences[Number(s.pattern)-1]:'Select a sentence structure to see its matching model.')}</p><p class="small">This is one evidence-consistent example. Other accurate constructions are acceptable.</p></div>`:''}<div class="section-foot"><button id="prev" ${current===0?'disabled':''}>← Previous</button><span class="small">Section ${current+1} of 4</span><button id="next" ${current===3?'disabled':''}>Next →</button></div>`;
+ $('unit-content').innerHTML=`<h3>${current+1}. ${esc(u.title)}</h3><p>Drag the cards into reading order, or use the arrow buttons.</p><p class="moves">Section flow: ${u.moves.map(esc).join(' → ')}</p><ol id="flow" class="flow"></ol><div class="actions"><button id="check-order" ${locked?'disabled':''}>Check my order</button><span id="order-feedback" class="small" aria-live="polite">${s.checked?'Order checked. Explain your choice below.':''}</span></div><label class="question" for="why">${esc(u.question)}</label><textarea id="why" ${locked?'disabled':''} placeholder="Write your own explanation.">${esc(s.why)}</textarea><h3>Construct a sentence</h3><p>Select one structure and write a sentence grounded in your assigned article.</p><div id="patterns" class="patterns">${u.patterns.map((p,i)=>`<label class="pattern"><input type="radio" name="pattern" value="${i+1}" ${s.pattern===String(i+1)?'checked':''} ${locked?'disabled':''}><span>${i+1}. ${esc(p)}</span></label>`).join('')}</div>${u.data?`<p><strong>${esc(u.data)}</strong></p>`:''}<label class="question" for="sentence">${esc(u.sentencePrompt)}</label><textarea id="sentence" ${locked?'disabled':''} placeholder="Write your sentence.">${esc(s.sentence)}</textarea><p class="small"><strong>Self-check:</strong> ${esc(u.sentenceCheck)}</p><div class="section-foot"><button id="prev" ${current===0?'disabled':''}>← Previous</button><span class="small">Section ${current+1} of 4</span><button id="next" ${current===3?'disabled':''}>Next →</button></div>`;
  renderCards();$('prev').addEventListener('click',()=>{current--;renderEditor()});$('next').addEventListener('click',()=>{current++;renderEditor()});
  if(locked)return;
  $('check-order').addEventListener('click',()=>{s.checked=true;$('order-feedback').textContent='Sequence recorded. Explain your reasoning; review the model after submission.';changed()});
@@ -979,7 +1375,7 @@ function changed(){if(submitted)return;const n=countDone(working);if($('progress
 function queueSave(){if(demo)return Promise.resolve();const idx=active,payload=copy(working);writeQueue=writeQueue.catch(()=>{}).then(()=>fire.updateDoc(docRef(idx),{sections:payload,updatedAt:fire.serverTimestamp()}));writeQueue.then(()=>{if(active===idx&&!submitted&&$('save-status'))$('save-status').textContent='Saved online.'}).catch(showError);return writeQueue}
 async function submitAll(){if(submitted||active<0)return;if(!savedName({sections:working})){const name=requireName();if(!name)return;working[0].studentName=name;if(demo&&slots[active])slots[active].sections=copy(working)}if(countDone(working)<4){const missing=working.findIndex(s=>!s.checked||!s.why.trim()||!s.pattern||!s.sentence.trim());current=missing;renderEditor();setStatus('Finish all four sections before submitting.');return}if(!window.confirm('Submit your four sections now? Your responses will be locked.'))return;
  const button=$('submit');button.disabled=true;setStatus('Submitting…');
- try{if(demo){slots[active].sections=copy(working);slots[active].status='submitted';slots[active].submittedAt=new Date().toISOString();savePreview()}else{clearTimeout(saveTimer);await queueSave();const batch=fire.writeBatch(db);batch.update(docRef(active),{sections:copy(working),updatedAt:fire.serverTimestamp(),status:'submitted',submittedAt:fire.serverTimestamp()});batch.update(statusRef(active),{status:'submitted',submittedAt:fire.serverTimestamp()});await batch.commit()}submitted=true;renderEditor();renderOverview();renderPeers();setStatus(demo?'Preview submission recorded only in this browser.':'Submitted successfully. Your final answers and submission time were recorded online.')}catch(e){button.disabled=false;showError(e)}
+ try{if(demo){slots[active].sections=copy(working);slots[active].status='submitted';slots[active].submittedAt=new Date().toISOString();savePreview()}else{clearTimeout(saveTimer);await queueSave();const batch=fire.writeBatch(db);batch.update(docRef(active),{sections:copy(working),updatedAt:fire.serverTimestamp(),status:'submitted',submittedAt:fire.serverTimestamp()});batch.update(statusRef(active),{status:'submitted',submittedAt:fire.serverTimestamp()});await batch.commit()}submitted=true;review=true;renderEditor();renderOverview();renderPeers();$('answer-key')?.scrollIntoView({block:'start'});setStatus(demo?'Preview submission recorded only in this browser.':'Submitted successfully. Your final answers and submission time were recorded online.')}catch(e){button.disabled=false;showError(e)}
 }
 function exportCSV(){const head=['Workspace','Student name','Article','Source PDF','Status','Submitted at','Section','Card order','Explanation','Selected structure','Sentence','Card order with statements'];let rows=[head];slots.forEach((d,i)=>{if(!d)return;if(d.status!=='submitted')return;const article=articleFor(i);article.units.forEach((u,j)=>{let s=d?.sections?.[j]||{};rows.push([`Student ${i+1}`,savedName(d),article.short,article.pdf,d?.status||'Not started',d?.submittedAt?stamp(d.submittedAt):'',u.title,(s.order||[]).join(' → '),s.why||'',s.pattern||'',s.sentence||'',(s.order||[]).map(id=>{const card=u.cards.find(c=>c.id===id);return id+'. '+(card?.text||'Card text unavailable')}).join(' | ')])})});const safe=v=>{let s=String(v??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};const csv='\ufeff'+rows.map(r=>r.map(safe).join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='IMRaD_class_responses.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);setStatus('Class responses exported.');}
 $('student-name').addEventListener('change',()=>{
