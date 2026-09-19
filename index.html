@@ -858,9 +858,10 @@ const fresh=(set=units)=>set.map(u=>({order:u.cards.map(c=>c.id),checked:false,w
 const countDone=sections=>Array.isArray(sections)?sections.filter(s=>s.checked&&String(s.why||'').trim()&&s.pattern&&String(s.sentence||'').trim()).length:0;
 const normalize=(s,set=units)=>Array.isArray(s)&&s.length===4?s.map((v,i)=>({order:Array.isArray(v.order)&&v.order.length===4&&set[i].cards.every(c=>v.order.includes(c.id))?v.order.slice():fresh(set)[i].order,checked:!!v.checked,why:String(v.why||''),pattern:String(v.pattern||''),sentence:String(v.sentence||'')})):fresh(set);
 const copy=v=>JSON.parse(JSON.stringify(v));
-let demo=false,db=null,auth=null,fire=null,uid=null,active=-1,current=0,working=null,slots=Array(MAX_SLOTS).fill(null),review=false,peerSection=0,saveTimer=null,writeQueue=Promise.resolve(),submitted=false;
+let demo=false,db=null,auth=null,fire=null,uid=null,active=-1,current=0,working=null,slots=Array(MAX_SLOTS).fill(null),review=false,peerSection=0,saveTimer=null,writeQueue=Promise.resolve(),submitted=false,facultyFeedback=null,facultyFeedbackUnsub=null;
 const docRef=i=>fire.doc(db,'verified_four_workspaces',SLOT_IDS[i]);
 const statusRef=i=>fire.doc(db,'verified_four_status',SLOT_IDS[i]);
+const facultyFeedbackRef=i=>fire.doc(db,'verified_four_feedback',SLOT_IDS[i]);
 let detailUnsub=Array(MAX_SLOTS).fill(null);
 function setStatus(s){$('global-status').textContent=s}
 function stamp(x){if(!x)return 'Not submitted';let d=x.toDate?x.toDate():new Date(x);return Number.isNaN(d.getTime())?'Time pending':d.toLocaleString()}
@@ -881,15 +882,15 @@ async function startOnline(config){
      if(!canRead&&detailUnsub[i]){detailUnsub[i]();detailUnsub[i]=null}
      if(!meta){
        slots[i]=null;
-       if(i===active){active=-1;working=null;submitted=false;$('workspace').innerHTML='<p class="small">This workspace was reset. Select an available workspace to continue.</p>'}
+       if(i===active){if(facultyFeedbackUnsub){facultyFeedbackUnsub();facultyFeedbackUnsub=null}facultyFeedback=null;active=-1;working=null;submitted=false;$('workspace').innerHTML='<p class="small">This workspace was reset. Select an available workspace to continue.</p>'}
      }else if(!canRead){
        slots[i]={ownerUid:meta.ownerUid,status:'draft',restricted:true,sections:[]};
      }else if(!detailUnsub[i]){
        slots[i]={ownerUid:meta.ownerUid,status:meta.status,restricted:true,sections:[]};
        detailUnsub[i]=dbMod.onSnapshot(docRef(i),detail=>{
          slots[i]=detail.exists()?detail.data():null;
-         if(slots[i]?.ownerUid===uid&&active<0){active=i;setArticle(i);working=normalize(slots[i].sections);submitted=slots[i].status==='submitted';renderEditor()}
-         if(i===active&&slots[i]?.status==='submitted'&&!submitted){submitted=true;clearTimeout(saveTimer);renderEditor()}
+         if(slots[i]?.ownerUid===uid&&active<0){active=i;setArticle(i);working=normalize(slots[i].sections);submitted=slots[i].status==='submitted';renderEditor();watchFacultyFeedback()}
+         if(i===active&&slots[i]?.status==='submitted'&&!submitted){submitted=true;clearTimeout(saveTimer);renderEditor();watchFacultyFeedback()}
          renderOverview();renderPeers();
        },showError);
      }
@@ -922,7 +923,7 @@ async function choose(i){
    const data={ownerUid:uid,sections:fresh(),status:'draft',claimedAt:fire.serverTimestamp(),updatedAt:fire.serverTimestamp(),submittedAt:null};
     tx.set(ref,data);tx.set(metaRef,{ownerUid:uid,status:'draft',claimedAt:fire.serverTimestamp(),submittedAt:null});return {...data,sections:fresh()};
   });
-  active=i;current=0;working=normalize(result.sections);submitted=result.status==='submitted';review=false;renderOverview();renderEditor();renderPeers();setStatus('Workspace ready. Your work saves automatically.');
+  active=i;current=0;working=normalize(result.sections);submitted=result.status==='submitted';review=false;renderOverview();renderEditor();watchFacultyFeedback();renderPeers();setStatus('Workspace ready. Your work saves automatically.');
  }catch(e){showError(e);renderOverview()}
 }
 function renderReadOnly(i){let d=slots[i],a=articleFor(i);$('workspace').innerHTML=`<h2>Student ${i+1} · View only</h2><p><strong>Article ${String.fromCharCode(65+i%4)}:</strong> ${esc(a.short)} · <a href="${esc(a.pdf)}" target="_blank" rel="noopener noreferrer">Download article PDF</a></p><p class="small">You cannot edit this workspace. Use your own workspace to complete the activity.</p>${d?readSections(d,a.units):'<p>No work yet.</p>'}`;renderPeers();}
@@ -947,9 +948,23 @@ function renderEditor(){
  $('tabs').querySelectorAll('[data-unit]').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.unit);renderEditor();renderPeers()}));
  $('review').addEventListener('click',()=>{review=!review;renderEditor()});$('submit').addEventListener('click',submitAll);renderUnit();renderOverview();renderPeers();
 }
+function watchFacultyFeedback(){
+ if(demo||!submitted||active<0||!fire||facultyFeedbackUnsub)return;
+ const idx=active;
+ facultyFeedbackUnsub=fire.onSnapshot(facultyFeedbackRef(idx),snap=>{
+  facultyFeedback=snap.exists()?snap.data():null;
+  if(active===idx&&submitted&&$('unit-content'))renderUnit();
+ },e=>setStatus('Cannot load faculty feedback: '+e.message));
+}
+function facultyNote(section){
+ if(!submitted)return '';
+ const note=facultyFeedback?.sections?.[section];
+ const rating={unreviewed:'Not assessed',meets:'Meets task',revise:'Needs revision'}[note?.assessment]||'Not assessed';
+ return `<div class="feedback"><strong>Faculty feedback</strong><p><strong>Sentence assessment:</strong> ${esc(rating)}</p><p>${esc(note?.comment||'No written feedback has been provided yet.')}</p><p class="small">Your card order is checked against the teaching key in the model-answer section above. Written sentences require instructor judgment.</p></div>`;
+}
 function renderUnit(){
  const u=units[current],s=working[current],locked=submitted;
- $('unit-content').innerHTML=`<h3>${current+1}. ${esc(u.title)}</h3><p>Drag the cards into reading order, or use the arrow buttons.</p><p class="moves">Section flow: ${u.moves.map(esc).join(' → ')}</p><ol id="flow" class="flow"></ol><div class="actions"><button id="check-order" ${locked?'disabled':''}>Check my order</button><span id="order-feedback" class="small" aria-live="polite">${s.checked?'Order checked. Explain your choice below.':''}</span></div><label class="question" for="why">${esc(u.question)}</label><textarea id="why" ${locked?'disabled':''} placeholder="Write your own explanation.">${esc(s.why)}</textarea><h3>Construct a sentence</h3><p>Select one structure and write a sentence grounded in your assigned article.</p><div id="patterns" class="patterns">${u.patterns.map((p,i)=>`<label class="pattern"><input type="radio" name="pattern" value="${i+1}" ${s.pattern===String(i+1)?'checked':''} ${locked?'disabled':''}><span>${i+1}. ${esc(p)}</span></label>`).join('')}</div>${u.data?`<p><strong>${esc(u.data)}</strong></p>`:''}<label class="question" for="sentence">${esc(u.sentencePrompt)}</label><textarea id="sentence" ${locked?'disabled':''} placeholder="Write your sentence.">${esc(s.sentence)}</textarea><p class="small"><strong>Self-check:</strong> ${esc(u.sentenceCheck)}</p>${submitted&&review?`<div class="model"><strong>Suggested flow: ${u.order.join(' → ')}</strong><p>${esc(u.rationale)}</p><p><strong>Model sentence for your selected structure:</strong></p><p>${esc(s.pattern?u.modelSentences[Number(s.pattern)-1]:'Select a sentence structure to see its matching model.')}</p><p class="small">This is one evidence-consistent example. Other accurate constructions are acceptable.</p></div>`:''}<div class="section-foot"><button id="prev" ${current===0?'disabled':''}>← Previous</button><span class="small">Section ${current+1} of 4</span><button id="next" ${current===3?'disabled':''}>Next →</button></div>`;
+ $('unit-content').innerHTML=`<h3>${current+1}. ${esc(u.title)}</h3><p>Drag the cards into reading order, or use the arrow buttons.</p><p class="moves">Section flow: ${u.moves.map(esc).join(' → ')}</p><ol id="flow" class="flow"></ol><div class="actions"><button id="check-order" ${locked?'disabled':''}>Check my order</button><span id="order-feedback" class="small" aria-live="polite">${s.checked?'Order checked. Explain your choice below.':''}</span></div><label class="question" for="why">${esc(u.question)}</label><textarea id="why" ${locked?'disabled':''} placeholder="Write your own explanation.">${esc(s.why)}</textarea><h3>Construct a sentence</h3><p>Select one structure and write a sentence grounded in your assigned article.</p><div id="patterns" class="patterns">${u.patterns.map((p,i)=>`<label class="pattern"><input type="radio" name="pattern" value="${i+1}" ${s.pattern===String(i+1)?'checked':''} ${locked?'disabled':''}><span>${i+1}. ${esc(p)}</span></label>`).join('')}</div>${u.data?`<p><strong>${esc(u.data)}</strong></p>`:''}<label class="question" for="sentence">${esc(u.sentencePrompt)}</label><textarea id="sentence" ${locked?'disabled':''} placeholder="Write your sentence.">${esc(s.sentence)}</textarea><p class="small"><strong>Self-check:</strong> ${esc(u.sentenceCheck)}</p>${submitted&&review?`<div class="model"><strong>Suggested flow: ${u.order.join(' → ')}</strong><p>${esc(u.rationale)}</p><p><strong>Model sentence for your selected structure:</strong></p><p>${esc(s.pattern?u.modelSentences[Number(s.pattern)-1]:'Select a sentence structure to see its matching model.')}</p><p class="small">This is one evidence-consistent example. Other accurate constructions are acceptable.</p></div>`:''}${facultyNote(current)}<div class="section-foot"><button id="prev" ${current===0?'disabled':''}>← Previous</button><span class="small">Section ${current+1} of 4</span><button id="next" ${current===3?'disabled':''}>Next →</button></div>`;
  renderCards();$('prev').addEventListener('click',()=>{current--;renderEditor()});$('next').addEventListener('click',()=>{current++;renderEditor()});
  if(locked)return;
  $('check-order').addEventListener('click',()=>{s.checked=true;$('order-feedback').textContent='Sequence recorded. Explain your reasoning; review the model after submission.';changed()});
@@ -970,7 +985,7 @@ function changed(){if(submitted)return;const n=countDone(working);if($('progress
 function queueSave(){if(demo)return Promise.resolve();const idx=active,payload=copy(working);writeQueue=writeQueue.catch(()=>{}).then(()=>fire.updateDoc(docRef(idx),{sections:payload,updatedAt:fire.serverTimestamp()}));writeQueue.then(()=>{if(active===idx&&!submitted&&$('save-status'))$('save-status').textContent='Saved online.'}).catch(showError);return writeQueue}
 async function submitAll(){if(submitted||active<0)return;if(countDone(working)<4){const missing=working.findIndex(s=>!s.checked||!s.why.trim()||!s.pattern||!s.sentence.trim());current=missing;renderEditor();setStatus('Finish all four sections before submitting.');return}if(!window.confirm('Submit your four sections now? Your responses will be locked.'))return;
  const button=$('submit');button.disabled=true;setStatus('Submitting…');
- try{if(demo){slots[active].sections=copy(working);slots[active].status='submitted';slots[active].submittedAt=new Date().toISOString();savePreview()}else{clearTimeout(saveTimer);await queueSave();const batch=fire.writeBatch(db);batch.update(docRef(active),{sections:copy(working),updatedAt:fire.serverTimestamp(),status:'submitted',submittedAt:fire.serverTimestamp()});batch.update(statusRef(active),{status:'submitted',submittedAt:fire.serverTimestamp()});await batch.commit()}submitted=true;renderEditor();renderOverview();renderPeers();setStatus(demo?'Preview submission recorded only in this browser.':'Submitted successfully. Your final answers and submission time were recorded online.')}catch(e){button.disabled=false;showError(e)}
+ try{if(demo){slots[active].sections=copy(working);slots[active].status='submitted';slots[active].submittedAt=new Date().toISOString();savePreview()}else{clearTimeout(saveTimer);await queueSave();const batch=fire.writeBatch(db);batch.update(docRef(active),{sections:copy(working),updatedAt:fire.serverTimestamp(),status:'submitted',submittedAt:fire.serverTimestamp()});batch.update(statusRef(active),{status:'submitted',submittedAt:fire.serverTimestamp()});await batch.commit()}submitted=true;renderEditor();watchFacultyFeedback();renderOverview();renderPeers();setStatus(demo?'Preview submission recorded only in this browser.':'Submitted successfully. Your final answers and submission time were recorded online.')}catch(e){button.disabled=false;showError(e)}
 }
 function exportCSV(){const head=['Workspace','Article','Source PDF','Status','Submitted at','Section','Card order','Explanation','Selected structure','Sentence','Card order with statements'];let rows=[head];slots.forEach((d,i)=>{if(!d)return;if(d.status!=='submitted')return;const article=articleFor(i);article.units.forEach((u,j)=>{let s=d?.sections?.[j]||{};rows.push([`Student ${i+1}`,article.short,article.pdf,d?.status||'Not started',d?.submittedAt?stamp(d.submittedAt):'',u.title,(s.order||[]).join(' → '),s.why||'',s.pattern||'',s.sentence||'',(s.order||[]).map(id=>{const card=u.cards.find(c=>c.id===id);return id+'. '+(card?.text||'Card text unavailable')}).join(' | ')])})});const safe=v=>{let s=String(v??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};const csv='\ufeff'+rows.map(r=>r.map(safe).join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='IMRaD_class_responses.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);setStatus('Class responses exported.');}
 $('export').addEventListener('click',()=>{if(!submitted){setStatus('Submit your own activity before exporting class responses.');return}exportCSV()});$('more-seats').addEventListener('click',()=>{visibleSeats=Math.min(MAX_SLOTS,visibleSeats+1);renderOverview();renderPeers();});renderOverview();
